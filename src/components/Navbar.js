@@ -58,7 +58,7 @@ const NavContainer = styled.nav`
     justify-content: space-between;
     img {
       width: 188px;
-      margin-left: -15px;
+      /* margin-left: -15px; */
     }
   }
   .nav-toggle {

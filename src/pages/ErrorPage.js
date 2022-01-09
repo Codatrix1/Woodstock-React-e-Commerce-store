@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
 const ErrorPage = () => {
   return (
     <Wrapper className="page-100">
@@ -17,6 +18,7 @@ const ErrorPage = () => {
 
 const Wrapper = styled.main`
   background: var(--clr-primary-10);
+  /* background: #f1f3f5; */
   display: flex;
   justify-content: center;
   align-items: center;

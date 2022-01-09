@@ -14,12 +14,12 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
 } from "../actions";
 
+const ProductsContext = React.createContext();
 const initialState = {
   isSidebarOpen: false,
 };
 
-const ProductsContext = React.createContext();
-
+// Provider Function
 const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -40,5 +40,4 @@ const ProductsProvider = ({ children }) => {
 const useProductsContext = () => {
   return useContext(ProductsContext);
 };
-
 export { ProductsProvider, useProductsContext };
