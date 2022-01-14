@@ -15,24 +15,28 @@ import {
 } from "../actions";
 
 const initialState = {
+  // For All Products and Featured Products
   isSidebarOpen: false,
   products_loading: false,
   products_error: false,
   products: [],
   featured_products: [],
-
+  // For Single Product
   single_product_loading: false,
   single_product_error: false,
   single_product: {},
 };
 
+//---------------------
 // Context Create
 const ProductsContext = React.createContext();
 
+//---------------------------
 // Context Provider Function
 const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // For Responsive Sidebar
   const openSidebar = () => {
     dispatch({ type: SIDEBAR_OPEN });
   };
@@ -40,6 +44,7 @@ const ProductsProvider = ({ children }) => {
     dispatch({ type: SIDEBAR_CLOSE });
   };
 
+  // For All Products and Featured Products
   const fetchProducts = async (url) => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
@@ -51,6 +56,7 @@ const ProductsProvider = ({ children }) => {
     }
   };
 
+  // For Single Product
   const fetchSingleProduct = async (url) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
@@ -63,16 +69,19 @@ const ProductsProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchProducts(`${url}`);
+    fetchProducts(url);
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
+    <ProductsContext.Provider
+      value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct }}
+    >
       {children}
     </ProductsContext.Provider>
   );
 };
 
+//----------------
 // Export context
 const useProductsContext = () => {
   return useContext(ProductsContext);

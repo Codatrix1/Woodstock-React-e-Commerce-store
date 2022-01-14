@@ -10,12 +10,15 @@ import {
 } from "../actions";
 
 const products_reducer = (state, action) => {
+  //--- For Sidebar
   if (action.type === SIDEBAR_OPEN) {
     return { ...state, isSidebarOpen: true };
   }
   if (action.type === SIDEBAR_CLOSE) {
     return { ...state, isSidebarOpen: false };
   }
+
+  //--- For All Products and Featured Products
   if (action.type === GET_PRODUCTS_BEGIN) {
     return { ...state, products_loading: true };
   }
@@ -34,6 +37,7 @@ const products_reducer = (state, action) => {
     return { ...state, products_loading: false, products_error: true };
   }
 
+  // --- For Single Product
   if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
     return {
       ...state,
@@ -55,6 +59,8 @@ const products_reducer = (state, action) => {
       single_product_error: true,
     };
   }
+
+  // --- COMMON ERROR Handling
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 
