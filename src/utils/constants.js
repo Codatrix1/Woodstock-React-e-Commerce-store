@@ -41,5 +41,7 @@ export const services = [
 ];
 
 export const products_url = "https://course-api.com/react-store-products";
+// export const products_url =
+//   "https://codatrix-serverless.netlify.app/api/3-z-complete";
 
 export const single_product_url = `https://course-api.com/react-store-single-product?id=`;

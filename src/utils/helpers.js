@@ -2,7 +2,7 @@ const formatPrice = (number) => {
   const newNumber = new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
-  }).format(number / 100);
+  }).format(number / 10);
   return newNumber;
 };
 
