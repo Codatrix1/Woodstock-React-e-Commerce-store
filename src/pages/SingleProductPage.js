@@ -11,7 +11,6 @@ import {
   Stars,
   PageHero,
 } from "../components";
-
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -30,13 +29,14 @@ const SingleProductPage = () => {
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
 
+  // Automatic navigation to home page after 3 seconds in case of error
   useEffect(() => {
     if (error) {
       setTimeout(() => {
         history.push("/");
       }, 3000);
     }
-  }, [error]);
+  }, [error, history]);
 
   if (loading) {
     return <Loading />;
@@ -61,33 +61,34 @@ const SingleProductPage = () => {
   return (
     <Wrapper>
       <PageHero title={name} product />
+      {/* back to products button*/}
       <div className="section section-center page">
         <Link to="/products" className="btn">
           back to products
         </Link>
-
+        {/* Single Product Details*/}
         <div className="product-center">
-          <ProductImages />
+          <ProductImages images={images} />
           <section className="content">
             <h2>{name}</h2>
-            <Stars />
+            <Stars stars={stars} reviews={reviews} />
+            <h5 className="price">{formatPrice(price)}</h5>
+            <p className="desc">{description}</p>
+            <p className="info">
+              <span>Available : </span>
+              {stock > 0 ? "In stock" : "Out of stock"}
+            </p>
+            <p className="info" style={{ textTransform: "none" }}>
+              <span>SKU : </span>
+              {sku}
+            </p>
+            <p className="info">
+              <span>Brand : </span>
+              {company}
+            </p>
+            <hr />
+            {stock > 0 && <AddToCart />}
           </section>
-          <h5 className="price">{formatPrice(price)}</h5>
-          <p className="desc">{description}</p>
-          <p className="info">
-            <span>Available : </span>
-            {stock > 0 ? "In stock" : "Out of stock"}
-          </p>
-          <p className="info">
-            <span>SKU : </span>
-            {sku}
-          </p>
-          <p className="info">
-            <span>Brand : </span>
-            {company}
-          </p>
-          <hr />
-          {stock > 0 && <AddToCart />}
         </div>
       </div>
     </Wrapper>

@@ -15,13 +15,15 @@ import {
 } from "../actions";
 
 const initialState = {
-  // For All Products and Featured Products
+  // State value for sidebar
   isSidebarOpen: false,
+  // State values for All Products
   products_loading: false,
   products_error: false,
   products: [],
+  // State value for featured products
   featured_products: [],
-  // For Single Product
+  // State values for Single Product
   single_product_loading: false,
   single_product_error: false,
   single_product: {},
@@ -44,7 +46,7 @@ const ProductsProvider = ({ children }) => {
     dispatch({ type: SIDEBAR_CLOSE });
   };
 
-  // For All Products and Featured Products
+  // Fetch All Products and Featured[Handled in reducer]
   const fetchProducts = async (url) => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
@@ -56,7 +58,7 @@ const ProductsProvider = ({ children }) => {
     }
   };
 
-  // For Single Product
+  // Fetch Single Product
   const fetchSingleProduct = async (url) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
