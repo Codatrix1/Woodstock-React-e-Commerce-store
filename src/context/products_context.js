@@ -83,9 +83,12 @@ const ProductsProvider = ({ children }) => {
   );
 };
 
-//----------------
-// Export context
+//---------------------------
+// useContext Function
 const useProductsContext = () => {
   return useContext(ProductsContext);
 };
+
+//---------
+// Exports
 export { ProductsProvider, useProductsContext };

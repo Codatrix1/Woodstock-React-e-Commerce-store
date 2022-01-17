@@ -13,29 +13,29 @@ const AddToCart = ({ product }) => {
 
   const increase = () => {
     setAmount((currentAmount) => {
-      let tempAmount = currentAmount + 1;
-      if (tempAmount > stock) {
-        tempAmount = stock;
+      let count = currentAmount + 1;
+      if (count > stock) {
+        count = stock;
       }
-      return tempAmount;
+      return count;
     });
   };
 
   const decrease = () => {
     setAmount((currentAmount) => {
-      let tempAmount = currentAmount - 1;
-      if (tempAmount < 1) {
-        tempAmount = 1;
+      let count = currentAmount - 1;
+      if (count < 1) {
+        count = 1;
       }
-      return tempAmount;
+      return count;
     });
   };
 
   return (
     <Wrapper>
+      {/*colors div */}
       <div className="colors">
         <span> colors : </span>
-
         <div>
           {colors.map((color, index) => {
             return (
@@ -53,11 +53,12 @@ const AddToCart = ({ product }) => {
           })}
         </div>
       </div>
+      {/*increase decrease buttons and add to cart button div */}
       <div className="btn-container">
         <AmountButtons
+          decrease={decrease}
           amount={amount}
           increase={increase}
-          decrease={decrease}
         />
         <Link to="/cart" className="btn">
           add to cart
