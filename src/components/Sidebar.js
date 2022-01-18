@@ -74,7 +74,7 @@ const SidebarContainer = styled.div`
     height: 45px;
   }
   img {
-    width: 188px;
+    width: 200px;
   }
   .links {
     margin-bottom: 2rem;
