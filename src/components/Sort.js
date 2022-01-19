@@ -31,6 +31,7 @@ const Sort = () => {
           <BsList />
         </button>
       </div>
+
       <p>{products.length} products found</p>
       <hr />
       <form>
@@ -44,8 +45,8 @@ const Sort = () => {
         >
           <option value="price-lowest">price (lowest)</option>
           <option value="price-highest">price (highest)</option>
-          <option value="name-a">(a-z)</option>
-          <option value="name-z">(z-a)</option>
+          <option value="name-a">name (a-z)</option>
+          <option value="name-z">name (z-a)</option>
         </select>
       </form>
     </Wrapper>

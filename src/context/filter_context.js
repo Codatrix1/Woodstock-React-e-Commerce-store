@@ -18,7 +18,19 @@ const initialState = {
   // State value for filtered products
   filtered_products: [],
   grid_view: true,
+  // Sorting Functionality
   sort: "price-lowest",
+  // Filters
+  filters: {
+    text: "",
+    company: "all",
+    category: "all",
+    color: "all",
+    min_price: 0,
+    max_price: 0,
+    price: 0,
+    shipping: false,
+  },
 };
 
 //---------------------
@@ -35,6 +47,10 @@ const FilterProvider = ({ children }) => {
   useEffect(() => {
     dispatch({ type: LOAD_PRODUCTS, payload: products });
   }, [products]);
+
+  useEffect(() => {
+    dispatch({ type: SORT_PRODUCTS });
+  }, [products, state.sort]);
 
   const setGridView = () => {
     dispatch({ type: SET_GRIDVIEW });
