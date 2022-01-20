@@ -16,12 +16,12 @@ const filter_reducer = (state, action) => {
 
     return {
       ...state,
-      // We need copies of all the products: else the filetered products will point to the same object in the memory,
+      // We need copies of all the products: else the filtered products will point to the same object in the memory,
       // and then we wont be alble to grab all products
       all_products: [...action.payload],
       filtered_products: [...action.payload],
       // Filters
-      filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
+      filters: { ...state.filters, price: maxPrice, max_price: maxPrice },
     };
   }
 
@@ -68,6 +68,16 @@ const filter_reducer = (state, action) => {
     }
 
     return { ...state, filtered_products: tempProducts };
+  }
+
+  if (action.type === UPDATE_FILTERS) {
+    const { name, value } = action.payload;
+    return { ...state, filters: { ...state.filters, [name]: value } };
+  }
+
+  if (action.type === FILTER_PRODUCTS) {
+    // console.log("filtering products");
+    return { ...state };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);
