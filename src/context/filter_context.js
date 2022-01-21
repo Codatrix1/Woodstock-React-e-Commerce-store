@@ -71,6 +71,17 @@ const FilterProvider = ({ children }) => {
   const updateFilters = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    // As we want ot access value from  a "BUTTON", we need to get the text out of it using Vanilla JS
+    if (name === "category") {
+      value = e.target.textContent;
+    }
+    if (name === "color") {
+      value = e.target.dataset.color;
+    }
+    // When we change the price, the state value is a "String", which indeed should be a Number: Hence FIXED
+    if (name === "price") {
+      value = +value;
+    }
     dispatch({ type: UPDATE_FILTERS, payload: { name: name, value: value } });
   };
 
