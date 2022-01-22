@@ -75,6 +75,7 @@ const FilterProvider = ({ children }) => {
     if (name === "category") {
       value = e.target.textContent;
     }
+    // As we want ot access value from  a "BUTTON", we need to get the data attribute using the dataset property using Vanilla JS
     if (name === "color") {
       value = e.target.dataset.color;
     }
@@ -82,10 +83,15 @@ const FilterProvider = ({ children }) => {
     if (name === "price") {
       value = +value;
     }
+    if (name === "shipping") {
+      value = e.target.checked;
+    }
     dispatch({ type: UPDATE_FILTERS, payload: { name: name, value: value } });
   };
 
-  const clearFilters = () => {};
+  const clearFilters = () => {
+    dispatch({ type: CLEAR_FILTERS });
+  };
 
   return (
     <FilterContext.Provider

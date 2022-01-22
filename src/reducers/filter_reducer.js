@@ -76,8 +76,54 @@ const filter_reducer = (state, action) => {
   }
 
   if (action.type === FILTER_PRODUCTS) {
-    // console.log("filtering products");
-    return { ...state };
+    const { all_products } = state;
+    const { text, category, company, color, price, shipping } = state.filters;
+
+    // VERY IMPORTANT: Everytime I filter, I need to have fresh copy of all the default products
+    let tempProducts = [...all_products];
+    // ---> Filtering
+    // text
+    if (text) {
+      tempProducts = tempProducts.filter((p) => {
+        return p.name.toLowerCase().startsWith(text);
+      });
+    }
+    // category
+    if (category !== "all") {
+      tempProducts = tempProducts.filter((p) => p.category === category);
+    }
+    // company
+    if (company !== "all") {
+      tempProducts = tempProducts.filter((p) => p.company === company);
+    }
+    // color
+    if (color !== "all") {
+      tempProducts = tempProducts.filter((p) => {
+        return p.colors.find((c) => c === color);
+      });
+    }
+    // price
+    tempProducts = tempProducts.filter((p) => p.price <= price);
+
+    // shipping
+    if (shipping) {
+      tempProducts = tempProducts.filter((p) => p.shipping === true);
+    }
+    return { ...state, filtered_products: tempProducts };
+  }
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        text: "",
+        category: "all",
+        company: "all",
+        color: "all",
+        price: state.filters.max_price,
+        shipping: false,
+      },
+    };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);
