@@ -109,6 +109,8 @@ const filter_reducer = (state, action) => {
     if (shipping) {
       tempProducts = tempProducts.filter((p) => p.shipping === true);
     }
+
+    // Final Return
     return { ...state, filtered_products: tempProducts };
   }
   if (action.type === CLEAR_FILTERS) {
