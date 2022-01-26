@@ -3,8 +3,8 @@ import reducer from "../reducers/cart_reducer";
 import {
   ADD_TO_CART,
   REMOVE_CART_ITEM,
-  TOGGLE_CART_ITEM_AMOUNT,
   CLEAR_CART,
+  TOGGLE_CART_ITEM_AMOUNT,
   COUNT_CART_TOTALS,
 } from "../actions";
 
@@ -22,7 +22,7 @@ const initialState = {
   cart: getLocalStorage(),
   total_items: 0,
   total_amount: 0,
-  shipping_fee: 15000,
+  shipping_fee: 35000,
 };
 
 const CartContext = React.createContext();
@@ -39,15 +39,25 @@ const CartProvider = ({ children }) => {
   };
 
   // Remove Item
-  const removeItem = (id) => {};
+  const removeItem = (id) => {
+    dispatch({ type: REMOVE_CART_ITEM, payload: id });
+  };
 
-  // Toggle Amount
-  const toggleAmount = (id, value) => {};
+  // Toggle Amount [Number of items]
+  const toggleAmount = (id, value) => {
+    console.log(id, value);
+    dispatch({
+      type: TOGGLE_CART_ITEM_AMOUNT,
+      payload: { id: id, value: value },
+    });
+  };
 
   // Clear Cart
-  const clearCart = () => {};
+  const clearCart = () => {
+    dispatch({ type: CLEAR_CART });
+  };
 
-  // Persist Cart Amount to Local Storage
+  // Persist Cart Amount to Local Storage: Between the Renders
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
