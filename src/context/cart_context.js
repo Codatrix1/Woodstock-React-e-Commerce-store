@@ -59,6 +59,7 @@ const CartProvider = ({ children }) => {
 
   // Persist Cart Amount to Local Storage: Between the Renders
   useEffect(() => {
+    dispatch({ type: COUNT_CART_TOTALS });
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
