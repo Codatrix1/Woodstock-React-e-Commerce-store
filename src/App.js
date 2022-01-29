@@ -25,7 +25,11 @@ const App = function () {
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:id" children={<SingleProduct />} />
-        <Route exact path="/checkout" component={Checkout} />
+
+        <PrivateRoute exact path="/checkout">
+          <Checkout />
+        </PrivateRoute>
+
         <Route path="*" component={Error} />
       </Switch>
 

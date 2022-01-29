@@ -1,4 +1,3 @@
-import { FaAcquisitionsIncorporated } from "react-icons/fa";
 import {
   ADD_TO_CART,
   CLEAR_CART,
