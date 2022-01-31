@@ -46,6 +46,7 @@ const Sidebar = () => {
             </li>
           )}
         </ul>
+
         {/*Buttons*/}
         <CartButtons />
       </aside>

@@ -27,6 +27,7 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
+    // eslint-disable-next-line
   }, [id]);
 
   // Automatic navigation to home page after 3 seconds in case of error
@@ -36,7 +37,8 @@ const SingleProductPage = () => {
         history.push("/");
       }, 3000);
     }
-  }, [error, history]);
+    // eslint-disable-next-line
+  }, [error]);
 
   if (loading) {
     return <Loading />;

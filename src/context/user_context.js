@@ -5,18 +5,13 @@ const UserContext = React.createContext();
 
 const UserProvider = ({ children }) => {
   // Invoking Auth0 Hook and destructuring: From Auth0 Documentation
-  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
-    useAuth0();
+  const { user, loginWithRedirect, logout } = useAuth0();
 
   const [myUser, setMyUser] = useState(null);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      setMyUser(user);
-    } else {
-      setMyUser(false);
-    }
-  }, [isAuthenticated]);
+    setMyUser(user);
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ loginWithRedirect, logout, myUser }}>
